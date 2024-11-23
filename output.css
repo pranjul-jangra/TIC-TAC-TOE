@@ -5,8 +5,8 @@
 }
 
 body {
-  background: linear-gradient(to top right, rgba(0, 0, 0, 0.495), rgba(0, 0, 0, 0.655), rgba(0, 0, 0, 0.655), rgba(0, 0, 0, 0.495));
   color: white;
+  background: linear-gradient(to top right, #e06377, #c83349, #e06377, #c83349, #e06377, #c83349, #e06377, #c83349, #e06377, #c83349, #e06377, #c83349, #e06377);
   display: flex;
   justify-content: center;
   align-items: center;
