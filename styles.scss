@@ -8,13 +8,7 @@ $button-radius: 0.7vw;
 $button-color: azure;
 
 body {
-    // background: linear-gradient(to top right, rgba(0, 0, 0, 0.495), rgba(0, 0, 0, 0.655), rgba(0, 0, 0, 0.655), rgba(0, 0, 0, 0.495));
     color: white;
-    // background-color: #d64161;
-    // background-color: #50394c;
-    // background-color: #d4ac6e;
-    // background-color: #c83349;
-    // background-color: #e06377;
     background: linear-gradient(to top right, #e06377, #c83349, #e06377, #c83349, #e06377, #c83349, #e06377, #c83349, #e06377, #c83349, #e06377, #c83349, #e06377);
     display: flex;
     justify-content: center;
@@ -45,16 +39,6 @@ body {
     transform: translateX(-100%);
     opacity: 0;
 }
-
-// #loading {
-//     width: 0;
-//     background-color: red;
-//     height: 7px;
-//     position: absolute;
-//     bottom: 0;
-//     left: 0;
-//     transition: all 2s;
-// }
 
 #scoreBoard {
     display: flex;
@@ -139,6 +123,7 @@ body {
     .buttons {
         width: 12vw;
         border-radius: $button-radius;
+        font-size: 1.7vw;
         line-height: 3vw;
         font-weight: 600;
         text-align: center;
