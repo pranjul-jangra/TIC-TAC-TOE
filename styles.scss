@@ -126,7 +126,6 @@ body {
         font-size: 1.7vw;
         line-height: 3vw;
         font-weight: 600;
-        text-align: center;
         color: black;
         background-color: $button-color;
         cursor: pointer;
@@ -164,13 +163,13 @@ body {
     }
 
     .outer {
-        height: 77vw;
-        width: 60vw;
+        height: fit-content;
+        width: 70vw;
         order: 3;
 
         .gameName {
             font-size: 6vw;
-            margin-bottom: 10vw;
+            margin-bottom: 8vw;
         }
     }
 
@@ -206,11 +205,12 @@ body {
     }
 
     .outer {
-        height: 100vw;
+        height: fit-content;
         width: 88vw;
 
         .gameName {
             font-size: 8vw;
+            margin-bottom: 8vw;
             text-shadow: 0.33vw 0.33vw rgb(226, 43, 195);
         }
     }
