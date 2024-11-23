@@ -155,6 +155,7 @@ body {
   }
   .outer .gameName {
     font-size: 6vw;
+    margin-bottom: 10vw;
   }
   #gamePanel {
     flex-direction: row;
@@ -187,7 +188,6 @@ body {
   .outer .gameName {
     font-size: 8vw;
     text-shadow: 0.33vw 0.33vw rgb(226, 43, 195);
-    margin-bottom: 4vw;
   }
   #gamePanel {
     gap: 8vw;

@@ -5,7 +5,7 @@ const scoreCount = document.querySelectorAll(".scores");
 const notify = document.querySelector('#notify');
 const loadingIndicator = document.createElement('div');
 
-loadingIndicator.style.cssText = 'width: 0; background-color: red; height: 7px; position: absolute; bottom: 0; left: 0; transition: all 3s;';
+// loadingIndicator.style.cssText = 'width: 0; background-color: red; height: 7px; position: absolute; bottom: 0; left: 0; transition: all 3s;';
 
 // Game variables
 let a = 0;
@@ -51,6 +51,8 @@ function winCheck() {
                 box.disabled = true;
             }
             winner = boxes[x].innerText;
+            notify.style.cssText = 'background-color:green;';
+            loadingIndicator.style.cssText = 'width: 0; background-color: red; height: 7px; position: absolute; bottom: 0; left: 0; transition: all 3s;';
 
             notify.innerHTML = `${winner === 'x' ? 'Player 1' : 'Player 2'} wins the match.`;
             notify.appendChild(loadingIndicator);
@@ -69,10 +71,19 @@ function winCheck() {
     }
 
     if (!haswinner && Array.from(boxes).every(box => box.innerText)) {
+        notify.innerHTML = "No winner! Match draw";
+        loadingIndicator.style.cssText = 'width: 0; background-color: yellow; height: 7px; position: absolute; bottom: 0; left: 0; transition: all 3s;';
+        notify.appendChild(loadingIndicator);
         setTimeout(() => {
-            alert("No winner \nMatch draw");
+            loadingIndicator.style.width = '100%';
+        }, 10);
+        notify.style.cssText = 'transform: translateX(0); opacity: 1; background-color:red;';
+        updateScores();
+        disableAllBoxes();
+        resetNotifyAfterDelay();
+        setTimeout(() => {
             resetGame();
-        }, 550);
+        }, 3000);
     }
 }
 
