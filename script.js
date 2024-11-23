@@ -1,17 +1,29 @@
-let boxes = document.querySelectorAll(".boxes");
-let rstBtn = document.querySelector("#reset");
-let newGameBtn = document.querySelector("#newgame");
-let scoreCount = document.querySelectorAll(".scores");
+const boxes = document.querySelectorAll(".boxes");
+const rstBtn = document.querySelector("#reset");
+const newGameBtn = document.querySelector("#newgame");
+const scoreCount = document.querySelectorAll(".scores");
+const notify = document.querySelector('#notify');
+const loadingIndicator = document.createElement('div');
+
+loadingIndicator.style.cssText = 'width: 0; background-color: red; height: 7px; position: absolute; bottom: 0; left: 0; transition: all 3s;';
+
+// Game variables
 let a = 0;
 let b = 0;
+let players = "player1";
+let haswinner = false;
+let winner = null;
+
 scoreCount[0].innerText = a;
 scoreCount[1].innerText = b;
-let players = "player1";
+
 let winPatterns = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
 
 boxes.forEach((box) => {
     box.addEventListener("click", () => {
-        if (players == "player1") {
+        if (haswinner) return;
+
+        if (players === "player1") {
             box.innerText = "x";
             box.style.cssText = "background-color:red; transform: rotateY(180deg); transition:0.5s;";
             players = "player2";
@@ -21,53 +33,67 @@ boxes.forEach((box) => {
             players = "player1";
         }
         box.disabled = true;
+
         winCheck();
-    })
-})
-winCheck = () => {
-    let hasWinner = false;
+    });
+});
+
+function winCheck() {
     for (const pattern of winPatterns) {
-        let [a, b, c] = pattern;
+        const [x, y, z] = pattern;
         if (
-            boxes[a].innerText &&
-            boxes[a].innerText === boxes[b].innerText &&
-            boxes[a].innerText === boxes[c].innerText
+            boxes[x].innerText &&
+            boxes[x].innerText === boxes[y].innerText &&
+            boxes[x].innerText === boxes[z].innerText
         ) {
-            winner = boxes[a].innerText;
-            setTimeout(() => {
-                alert(`${winner == 'x' ? 'player 1' : 'player 2'} wins the match.`);
-                playerScores();
-                autoReset();
-            }, 550);
-            hasWinner = true;
-        }
-    }
-
-    if (!hasWinner) {
-        let allBoxesFilled = true;
-        for (const box of boxes) {
-            if (!box.innerText) {
-                allBoxesFilled = false;
-                break;
+            haswinner = true;
+            for (let box of boxes) {
+                box.disabled = true;
             }
-        }
+            winner = boxes[x].innerText;
 
-        if (allBoxesFilled) {
+            notify.innerHTML = `${winner === 'x' ? 'Player 1' : 'Player 2'} wins the match.`;
+            notify.appendChild(loadingIndicator);
+
             setTimeout(() => {
-                alert("No winner \nMatch draw");
-                autoReset();
-            }, 550);
+                loadingIndicator.style.width = '100%';
+            }, 0);
+
+            notify.style.cssText = 'transform: translateX(0); opacity: 1;';
+            updateScores();
+            disableAllBoxes();
+            resetNotifyAfterDelay();
+            setTimeout(() => { resetGame() }, 3000)
+            return;
         }
     }
-};
 
-playerScores = () => {
+    if (!haswinner && Array.from(boxes).every(box => box.innerText)) {
+        setTimeout(() => {
+            alert("No winner \nMatch draw");
+            resetGame();
+        }, 550);
+    }
+}
+
+function disableAllBoxes() {
+    boxes.forEach((box) => {
+        box.disabled = true;
+    });
+}
+
+function resetNotifyAfterDelay() {
+    setTimeout(() => {
+        notify.style.cssText = 'transform: translateX(-100%); opacity: 0;';
+        loadingIndicator.style.width = '0';
+    }, 3000);
+}
+
+function updateScores() {
     if (winner === "x") {
         scoreCount[0].innerText = ++a;
-    } else {
-        if (winner === "o") {
-            scoreCount[1].innerText = ++b;
-        }
+    } else if (winner === "o") {
+        scoreCount[1].innerText = ++b;
     }
 }
 
@@ -76,22 +102,15 @@ function resetGame() {
         box.innerText = "";
         box.disabled = false;
         box.style.cssText = "background-color:white; transform: rotateY(0deg); transition:0.5s;";
-        haswinner = false;
-    })
+    });
+    haswinner = false;
+    winner = null;
 }
 
-autoReset = resetGame;
-rstBtn.addEventListener("click", resetGame)
+rstBtn.addEventListener("click", resetGame);
 
 newGameBtn.addEventListener("click", () => {
-    boxes.forEach((box) => {
-        box.innerText = "";
-        box.disabled = false;
-        box.style.cssText = "background-color:white; transform: rotateY(0deg); transition:0.5s;";
-        haswinner = false;
-    })
-    scoreCount.forEach((score) => {
-        score.innerText = 0;
-    })
-    a = 0; b = 0;
-})
+    resetGame();
+    scoreCount.forEach(score => score.innerText = 0);
+    a = 0, b = 0;
+});

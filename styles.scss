@@ -26,6 +26,36 @@ body {
     overflow-x: hidden;
 }
 
+#notify {
+    width: 400px;
+    height: 45px;
+    padding-top: 4px;
+    background-color: rgb(59, 211, 22);
+    color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-left: 30px;
+    transition: all 0.5s;
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    z-index: 5;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+// #loading {
+//     width: 0;
+//     background-color: red;
+//     height: 7px;
+//     position: absolute;
+//     bottom: 0;
+//     left: 0;
+//     transition: all 2s;
+// }
+
 #scoreBoard {
     display: flex;
     flex-direction: column;
@@ -138,6 +168,8 @@ body {
         gap: 10vw;
 
         .players {
+            margin-top: 10vw;
+
             .scores {
                 width: 20vw;
                 height: 5vw;
@@ -147,8 +179,8 @@ body {
     }
 
     .outer {
-        height: 65vw;
-        width: 53vw;
+        height: 77vw;
+        width: 60vw;
         order: 3;
 
         .gameName {
@@ -176,6 +208,8 @@ body {
         gap: 8vw;
 
         .players {
+            margin-top: 10vw;
+
             .scores {
                 width: 30vw;
                 height: 7vw;
@@ -185,12 +219,13 @@ body {
     }
 
     .outer {
-        height: 85vw;
-        width: 69vw;
+        height: 100vw;
+        width: 88vw;
 
         .gameName {
             font-size: 8vw;
             text-shadow: 0.33vw 0.33vw rgb(226, 43, 195);
+            margin-bottom: 4vw;
         }
     }
 
