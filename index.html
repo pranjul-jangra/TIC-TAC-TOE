@@ -3,43 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Tac Toe</title>
-    <link rel="stylesheet" href="output.css">
+    <title>Tic Tac Toe - Play and Compete</title>
+
+    <!-- Meta Descriptions -->
+    <meta name="description" content="Play an interactive and exciting Tic Tac Toe game! Challenge your friends, track scores, and enjoy a seamless gaming experience.">
+
+    <!-- Keywords for SEO -->
+    <meta name="keywords" content="Tic Tac Toe, online games, two-player games, interactive games, play tic tac toe">
+
+    <!-- Author -->
+    <meta name="author" content="Your Name">
+
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="Tic Tac Toe - Play and Compete">
+    <meta property="og:description" content="Challenge your friends in this exciting Tic Tac Toe game. Easy to play, fun to master!">
+    <meta property="og:image" content="https://example.com/tic-tac-toe-thumbnail.png">
+    <meta property="og:url" content="https://example.com/tic-tac-toe">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="output.css">
 </head>
 <body>
 
-    <div id="notify"></div>
+    <!-- Notification Area -->
+    <div id="notify" aria-live="polite" role="alert"></div>
 
-    <div id="scoreBoard">
-        <div class="players">
-            Player 1: <div class="scores"></div>
+    <!-- Scoreboard -->
+    <section id="scoreBoard" aria-label="Scoreboard">
+        <div class="players" aria-label="Player 1 Score">
+            Player 1: <div class="scores" role="status" aria-live="polite">0</div>
         </div>
-        <div class="players">
-            Player 2: <div class="scores"></div>
+        <div class="players" aria-label="Player 2 Score">
+            Player 2: <div class="scores" role="status" aria-live="polite">0</div>
         </div>
-    </div>
+    </section>
 
-    <div class="outer">
-        <div class="gameName">TIC TAC TOE</div>
-        <div class="inner">
-            <button class="boxes"></button>
-            <button class="boxes"></button>
-            <button class="boxes"></button>
-            <button class="boxes"></button>
-            <button class="boxes"></button>
-            <button class="boxes"></button>
-            <button class="boxes"></button>
-            <button class="boxes"></button>
-            <button class="boxes"></button>
-        </div>
-    </div>
+    <main class="outer">
+        <h1 class="gameName">Tic Tac Toe</h1>
+        <section class="inner" aria-label="Game Board">
+            <button class="boxes" aria-label="Game Box 1"></button>
+            <button class="boxes" aria-label="Game Box 2"></button>
+            <button class="boxes" aria-label="Game Box 3"></button>
+            <button class="boxes" aria-label="Game Box 4"></button>
+            <button class="boxes" aria-label="Game Box 5"></button>
+            <button class="boxes" aria-label="Game Box 6"></button>
+            <button class="boxes" aria-label="Game Box 7"></button>
+            <button class="boxes" aria-label="Game Box 8"></button>
+            <button class="boxes" aria-label="Game Box 9"></button>
+        </section>
+    </main>
 
-    <div id="gamePanel">
-        <div id="reset" class="buttons">Reset Game</div>
-        <div id="newgame" class="buttons">New Game</div>
-    </div>
+    <section id="gamePanel" aria-label="Game Controls">
+        <button id="reset" class="buttons" aria-label="Reset Game">Reset Game</button>
+        <button id="newgame" class="buttons" aria-label="Start New Game">New Game</button>
+    </section>
 
-    <script src="script.js"></script>
+    <!-- Script -->
+    <script src="script.js" defer></script>
 </body>
 </html>
