@@ -5,8 +5,6 @@ const scoreCount = document.querySelectorAll(".scores");
 const notify = document.querySelector('#notify');
 const loadingIndicator = document.createElement('div');
 
-// loadingIndicator.style.cssText = 'width: 0; background-color: red; height: 7px; position: absolute; bottom: 0; left: 0; transition: all 3s;';
-
 // Game variables
 let a = 0;
 let b = 0;
