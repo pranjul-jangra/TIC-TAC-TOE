@@ -140,9 +140,10 @@ body {
     }
 }
 
-@media (max-width:600px) {
+@media (max-width:768px) {
     body {
         flex-direction: column;
+        justify-content: start;
         gap: 2.2vw;
         font-size: 2.4vw;
     }
@@ -159,7 +160,7 @@ body {
         gap: 10vw;
 
         .players {
-            margin-top: 10vw;
+            margin-top: 3vh;
 
             .scores {
                 width: 20vw;

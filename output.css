@@ -129,9 +129,10 @@ body {
   box-shadow: 0.25vw 0.25vw white, 0 0 0.2vw red;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   body {
     flex-direction: column;
+    justify-content: start;
     gap: 2.2vw;
     font-size: 2.4vw;
   }
@@ -146,7 +147,7 @@ body {
     gap: 10vw;
   }
   #scoreBoard .players {
-    margin-top: 10vw;
+    margin-top: 3vh;
   }
   #scoreBoard .players .scores {
     width: 20vw;
