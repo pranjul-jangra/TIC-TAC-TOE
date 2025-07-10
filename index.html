@@ -3,48 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Tac Toe - Play and Compete</title>
-    <meta name="description" content="Play an interactive and exciting Tic Tac Toe game! Challenge your friends, track scores, and enjoy a seamless gaming experience.">
-    <meta name="keywords" content="Tic Tac Toe, online games, two-player games, interactive games, play tic tac toe">
-    <meta name="author" content="Pranjul">
-
-    <link rel="icon" type="image/png" href="./assets/favicon.png">
+    <title>Ultimate Tic Tac Toe - Enhanced Gaming Experience</title>
+    <meta name="description" content="Experience the ultimate Tic Tac Toe game with AI opponent, themes, sound effects, and more!">
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/png">
     <link rel="stylesheet" href="output.css">
 </head>
 <body>
-
-    <div id="notify" aria-live="polite" role="alert"></div>
-
-    <section id="scoreBoard" aria-label="Scoreboard">
-        <div class="players" aria-label="Player 1 Score">
-            Player 1: <div class="scores" role="status" aria-live="polite">0</div>
+    <button class="sound-toggle" id="soundToggle" aria-label="Toggle Sound">🔊</button>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Ultimate Tic Tac Toe</h1>
+            <p class="subtitle">Challenge yourself with AI or play with friends!</p>
         </div>
-        <div class="players" aria-label="Player 2 Score">
-            Player 2: <div class="scores" role="status" aria-live="polite">0</div>
+
+        <div class="left-panel">
+            <!-- Game modes -->
+            <div class="control-section">
+                <h3 class="section-title">Game Mode</h3>
+                <div class="game-mode">
+                    <div class="mode-option active" data-mode="pvp">Player vs Player</div>
+                    <div class="mode-option" data-mode="ai">Player vs AI</div>
+                </div>
+                <div class="difficulty-selector" id="difficultySelector" style="display: none;">
+                    <div class="difficulty-option active" data-difficulty="easy">Easy</div>
+                    <div class="difficulty-option" data-difficulty="medium">Medium</div>
+                    <div class="difficulty-option" data-difficulty="hard">Hard</div>
+                </div>
+            </div>
+
+            <!-- Theme -->
+            <div class="control-section">
+                <h3 class="section-title">Theme</h3>
+                <div class="theme-selector">
+                    <div class="theme-option classic active" data-theme="classic">Classic</div>
+                    <div class="theme-option neon" data-theme="neon">Neon</div>
+                    <div class="theme-option ocean" data-theme="ocean">Ocean</div>
+                    <div class="theme-option sunset" data-theme="sunset">Sunset</div>
+                </div>
+            </div>
+
+            <!-- Game controls -->
+            <div class="control-section">
+                <h3 class="section-title">Controls</h3>
+                <div class="control-buttons">
+                    <button class="btn btn-primary" id="resetBtn">Reset Game</button>
+                    <button class="btn btn-secondary" id="newGameBtn">New Game</button>
+                    <button class="btn btn-success" id="hintBtn">Get Hint</button>
+                    <button class="btn btn-warning" id="undoBtn">Undo Move</button>
+                </div>
+            </div>
         </div>
-    </section>
 
-    <main class="outer">
-        <h1 class="gameName">Tic Tac Toe</h1>
-        <section class="inner" aria-label="Game Board">
-            <button class="boxes" aria-label="Game Box 1"></button>
-            <button class="boxes" aria-label="Game Box 2"></button>
-            <button class="boxes" aria-label="Game Box 3"></button>
-            <button class="boxes" aria-label="Game Box 4"></button>
-            <button class="boxes" aria-label="Game Box 5"></button>
-            <button class="boxes" aria-label="Game Box 6"></button>
-            <button class="boxes" aria-label="Game Box 7"></button>
-            <button class="boxes" aria-label="Game Box 8"></button>
-            <button class="boxes" aria-label="Game Box 9"></button>
-        </section>
-    </main>
+        <!-- Game board -->
+        <div class="game-board">
+            <h3 class="section-title">Try Your Move</h3>
 
-    <section id="gamePanel" aria-label="Game Controls">
-        <button id="reset" class="buttons" aria-label="Reset Game">Reset Game</button>
-        <button id="newgame" class="buttons" aria-label="Start New Game">New Game</button>
-    </section>
+            <div class="board-grid" id="gameBoard">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+        </div>
+
+        <!-- Score board -->
+        <div class="right-panel">
+            <div class="stats-section">
+                <h3 class="section-title">Score</h3>
+                <div class="score-display">
+                    <div class="player-score">
+                        <div class="player-name">Player 1 (X)</div>
+                        <div class="score-value" id="player1Score">0</div>
+                    </div>
+                    <div class="player-score">
+                        <div class="player-name">Player 2 (O)</div>
+                        <div class="score-value" id="player2Score">0</div>
+                    </div>
+                </div>
+                <div class="current-turn" id="currentTurn">Player 1's Turn</div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-section">
+                <h3 class="section-title">Game Stats</h3>
+                <div class="game-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalGames">0</div>
+                        <div class="stat-label">Games Played</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="draws">0</div>
+                        <div class="stat-label">Draws</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="winRate">0%</div>
+                        <div class="stat-label">Win Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="avgMoves">0</div>
+                        <div class="stat-label">Avg Moves</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="gameOverModal">
+        <div class="modal">
+            <h2 class="modal-title" id="modalTitle">Game Over</h2>
+            <p class="modal-message" id="modalMessage">Great game!</p>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="playAgainBtn">Play Again</button>
+                <button class="btn btn-secondary" id="closeModalBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
 
     <!-- Script -->
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>
