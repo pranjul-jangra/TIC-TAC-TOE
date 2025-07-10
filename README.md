@@ -6,6 +6,7 @@ Ultimate Tic Tac Toe is a visually engaging, interactive twist on the classic Ti
 
 ## Demo
 [sigma-livid](https://tic-tac-toe-sigma-livid.vercel.app/)
+<br/>
 <img src="./assets/livid.png" alt="Livid play" width="340" height="190" >
 
 ## ✨ Features
